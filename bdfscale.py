@@ -23,7 +23,10 @@ scale_lines = [
         "X_HEIGHT",
         "QUAD_WIDTH",
         "FONT_DESCENT",
-        "FONT_ASCENT"
+        "FONT_ASCENT",
+        "CAP_HEIGHT",
+        "RAW_ASCENT",
+        "RAW_DESCENT",
         ]
 
 scale = args.scale
