@@ -67,6 +67,6 @@ for line in file.readlines():
             if xlfd_fields[i] != "":
                 xlfd_fields[i] = str(int(xlfd_fields[i]) * scale)
         line = "FONT " + "-".join(xlfd_fields) + "\n"
-    elif line.startswith("BITMAP "):
+    elif line == "BITMAP\n":
         bitmap = True
     print(line, end="")
