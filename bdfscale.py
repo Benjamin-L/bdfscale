@@ -29,6 +29,14 @@ scale_lines = [
         "RAW_DESCENT",
         ]
 
+scale_xlfd_fields = [
+        7, # PIXEL_SIZE
+        8, # POINT_SIZE
+        9, # RESOLUTION_X
+        10, # RESOLUTION_Y
+        12, # AVERAGE_WIDTH
+        ]
+
 scale = args.scale
 file = open(args.file)
 bitmap = False
@@ -53,6 +61,12 @@ for line in file.readlines():
         for i, num in enumerate(words[1:]):
             words[i+1] = str(int(num) * scale)
         line = " ".join(words) + "\n"
+    elif line.startswith("FONT "):
+        xlfd_fields = line.split()[1].split("-")
+        for i in scale_xlfd_fields:
+            if xlfd_fields[i] != "":
+                xlfd_fields[i] = str(int(xlfd_fields[i]) * scale)
+        line = "FONT " + "-".join(xlfd_fields) + "\n"
     elif line.startswith("BITMAP "):
         bitmap = True
     print(line, end="")
