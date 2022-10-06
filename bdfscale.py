@@ -48,11 +48,11 @@ for line in file.readlines():
 
         line = "0"*(size - len(res)) + res  # Pad out to desired length
         line = (line + "\n")*scale  # And correct number of lines
-    elif any([line.startswith(x) for x in scale_lines]):
+    elif any([line.startswith(x + " ") for x in scale_lines]):
         words = line.split()
         for i, num in enumerate(words[1:]):
             words[i+1] = str(int(num) * scale)
         line = " ".join(words) + "\n"
-    elif line.startswith("BITMAP"):
+    elif line.startswith("BITMAP "):
         bitmap = True
     print(line, end="")
